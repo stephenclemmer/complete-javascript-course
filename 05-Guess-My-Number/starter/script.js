@@ -15,6 +15,7 @@ displayScore(score);
 let highscore = 0;
 let won = false;
 
+// Create
 const displayMessage = function (message) {
   document.querySelector('.message').textContent = message;
 };
