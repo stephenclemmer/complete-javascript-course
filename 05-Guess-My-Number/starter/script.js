@@ -60,29 +60,18 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.message').textContent = 'You lost!';
     }
 
-    // When guess is too high
-  } else if (guess > secretNumber) {
+    // When guess is too high or too low
+  } else if (guess !== secretNumber) {
     if (score > 0) {
-      document.querySelector('.message').textContent = 'Too high, guess again!';
+      document.querySelector('.message').textContent =
+        guess > secretNumber
+          ? 'Too high, guess again!'
+          : 'Too low, guess again!';
       score--;
       document.querySelector('.score').textContent = score;
     } else {
       document.querySelector('.message').textContent = 'You lost!';
     }
-
-    // When guess is too low
-  } else {
-    if (score > 0) {
-      document.querySelector('.message').textContent = 'Too low, guess again!';
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.message').textContent = 'You lost!';
-    }
-  }
-
-  if (score === 0) {
-    document.querySelector('.message').textContent = 'You lost!';
   }
 
   //   Make the Reset button reset the game
