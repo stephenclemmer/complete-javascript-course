@@ -23,6 +23,11 @@ playerTwo.textContent = Number(0);
 diceEl.classList.add('hidden');
 let roll = 0;
 let playerOneTurn = true;
+let playerOneScore = 0;
+let playerTwoScore = 0;
+
+let playerOneWin = 0;
+let playerTwoWin = 0;
 
 // FUNCTIONS
 const rollDiceFunction = function () {
@@ -50,12 +55,22 @@ const newGameFunction = function () {
   playerTwo.textContent = 0;
   currentScore0.textContent = 0;
   currentScore1.textContent = 0;
+
+  if (playerOneWin > 20) {
+    sectionOne.classList.toggle('player--winner');
+  } else {
+    sectionTwo.classList.toggle('player--winner');
+  }
+
   sectionOne.classList.add('player--active');
   sectionTwo.classList.remove('player--active');
+  rollDiceBtn.classList.remove('hidden');
+  holdBtn.classList.remove('hidden');
+  playerOneWin = 0;
+  playerTwoWin = 0;
 };
 
 const switchPlayers = function () {
-  console.log('inside switch players function');
   playerOneTurn === true
     ? ((playerOneTurn = false),
       sectionOne.classList.toggle('player--active'),
@@ -67,22 +82,36 @@ const switchPlayers = function () {
 
 const holdFunction = function () {
   if (playerOneTurn === true) {
-    console.log('ready player one');
     playerOne.textContent =
       Number(playerOne.textContent) + Number(currentScore0.textContent);
+    playerOneWin = Number(playerOne.textContent);
     currentScore0.textContent = 0;
+
+    if (playerOneWin > 20) {
+      sectionOne.classList.toggle('player--active');
+      sectionOne.classList.toggle('player--winner');
+      diceEl.classList.add('hidden');
+      rollDiceBtn.classList.add('hidden');
+      holdBtn.classList.add('hidden');
+    }
   } else {
     playerOneTurn === true;
     playerTwo.textContent =
       Number(playerTwo.textContent) + Number(currentScore1.textContent);
+    playerTwoWin = Number(playerTwo.textContent);
     currentScore1.textContent = 0;
+
+    if (playerTwoWin > 20) {
+      sectionTwo.classList.toggle('player--active');
+      sectionTwo.classList.toggle('player--winner');
+      diceEl.classList.add('hidden');
+      rollDiceBtn.classList.add('hidden');
+      holdBtn.classList.add('hidden');
+    }
   }
+
   switchPlayers();
 };
-
-// WIN
-if (playerOne.textContent > 99 || playerTwo.textContent > 99) {
-}
 
 // EVENT LISTENERS
 const diceRoll = rollDiceBtn.addEventListener('click', rollDiceFunction);
