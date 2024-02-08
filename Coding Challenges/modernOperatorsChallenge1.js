@@ -53,3 +53,48 @@ const game = {
     team2: 6.5,
   },
 };
+
+// Task 1
+const players1 = [...game.players[0]];
+const players2 = [...game.players[1]];
+
+console.log("players 1", players1);
+console.log("players 2", players2);
+
+// Task 2
+let gk = players1[0];
+let fieldPlayers = [players1.slice(1)];
+
+console.log("gk:", gk);
+console.log("field players:", fieldPlayers);
+
+// Task 3
+let allPlayers = [...players1, ...players2];
+
+console.log(allPlayers);
+
+// Task 4
+let players1Final = ["Thiago", "Coutinho", "Perisic", ...players1];
+console.log(players1Final);
+
+// Task 5
+let team1 = game.odds.team1;
+let draw = game.odds.x;
+let team2 = game.odds.team2;
+
+console.log("team1 odds", team1);
+console.log("draw odds", draw);
+console.log("team2 odds", team2);
+
+// Task 6
+function printGoals(...playerNames) {
+  console.log(playerNames);
+  console.log(playerNames.length);
+}
+
+// Task 7:
+
+// Test data for Task 6:
+printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
+console.log("_______________________");
+printGoals(...game.scored);
